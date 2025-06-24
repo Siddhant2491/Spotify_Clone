@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/images/fabicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="close">
+            <img id="clo" src="/assets/images/close.svg" alt="">
+        </div>
+        <div class="home">
+          <div class="logo">
+            <img src="assets/images/logo.svg" alt="LOGO" />
+          </div>
+          <div class="home-btn">
+            <img src="assets/images/home.svg" alt="HOME" class="home-btn" />
+            <span>Home</span>
+          </div>
+          <div class="search-btn">
+            <img
+              src="assets/images/search.svg"
+              alt="SEARCH"
+              class="search-btn"
+            />
+            <span>Search</span>
+          </div>
+        </div>
+        <div class="playlist">
+          <div class="play-head">
+            <img src="assets/images/library.svg" alt="Library" />
+            <span>Your Library</span>
+          </div>
+          <div class="lib">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="nav">
+          <div class="hamburger">
+            <img id="ham" src="/assets/images/hamburger.svg" alt="" />
+          </div>
+          <div class="arrows">
+            <img src="/assets/images/leftArrow.svg" alt="LEFT" />
+            <img src="/assets/images/rightArrow.svg" alt="RIGHT" />
+          </div>
+          <div class="sin-log">
+            <button class="sign-btn">Sign up</button>
+            <button class="log-btn">Log in</button>
+          </div>
+        </div>
+        <div class="albums">
+            <div class="heading">
+                <h2>Spotify Playlists</h2>
+                <p>Autoplay</p>
+                <img id="toggle" src="/assets/images/autoplayoff.svg" alt="OFF">
+            </div>
+          <div class="album">
+            <div class="cards">
+              
+            </div>
+          </div>
+          <div class="playbar">
+            <div class="playbars">
+              <div class="disName"></div>
+              <div class="controls">
+                <img id="replay" src="/assets/images/replay.svg" alt="">
+                <img id="prev" src="/assets/images/prev.svg" alt="" />
+                <img id="play" src="/assets/images/play.svg" alt="" />
+                <img id="next" src="/assets/images/next.svg" alt="" />
+              </div>
+              <div class="timeVol">
+                <div class="time"></div>
+                <div class="vol">
+                  <img id="mute" src="/assets/images/volume.svg" alt="volume" />
+                  <input type="range" name="volume" id="" />
+                </div>
+              </div>
+            </div>
+            <div class="seekBar">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
