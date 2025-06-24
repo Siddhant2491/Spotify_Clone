@@ -10,7 +10,7 @@ let play, prev, next, replay, mute, ham, clo, toggle;
 
 async function getsongs(folder) {
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -187,17 +187,7 @@ function bindControls() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Assign all controls
-    play = document.getElementById("play");
-    prev = document.getElementById("prev");
-    next = document.getElementById("next");
-    replay = document.getElementById("replay");
-    mute = document.getElementById("mute");
-    ham = document.getElementById("ham");
-    clo = document.getElementById("clo");
-    toggle = document.getElementById("toggle");
-
-    await getsongs("Spotify_Clone/songs/Badshah");
+    await getsongs(`Spotify_Clone/songs/Badshah`);
     playSong(songs[0], true);
     await displayAlbums();
     bindControls();
