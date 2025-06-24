@@ -25,7 +25,7 @@ async function getsongs(folder) {
     for (const song of songs) {
         p.innerHTML = p.innerHTML + `<li>
                             <div class="sname">    
-                                <img src="/assets/images/music.svg" alt="">
+                                <img src="/Spotify_Clone/assets/images/music.svg" alt="">
                                 <p class="songName">
                                     ${song.replaceAll("%20", " ")}
                                 </p>
@@ -55,15 +55,15 @@ function formatTime(seconds) {
 function setOnEndHandler() {
     currentSong.onended = () => {
         if (flag) {
-            let currentTrack = currentSong.src.split("/").slice(-1)[0];
+            let currentTrack = currentSong.src.split(`/${currFolder}/`)[1];
             let index = songs.indexOf(currentTrack);
             if (index + 1 < songs.length) {
                 playSong(songs[index + 1]);
             } else {
-                play.src = "/assets/images/play.svg";
+                play.src = "/Spotify_Clone/assets/images/play.svg";
             }
         } else {
-            play.src = "/assets/images/play.svg";
+            play.src = "/Spotify_Clone/assets/images/play.svg";
         }
     };
 }
@@ -76,7 +76,7 @@ const playSong = (track, pause = false) => {
     if (!pause) {
         currentSong.play();
         if (!currentSong.paused) {
-            play.src = "/assets/images/pause.svg";
+            play.src = "/Spotify_Clone/assets/images/pause.svg";
         }
     }
     document.querySelector(".disName").innerHTML = decodeURI(track);
@@ -84,7 +84,7 @@ const playSong = (track, pause = false) => {
 }
 
 async function displayAlbums(){
-    let a= await fetch("songs/");
+    let a= await fetch("/Spotify_Clone/songs/");
     let response= await a.text();
     let div=document.createElement("div");
     div.innerHTML=response;
@@ -101,7 +101,7 @@ async function displayAlbums(){
             if (!folder) continue;
             //geting meta data
             try {
-                const res = await fetch(`/songs/${folder}/info.json`);
+                const res = await fetch(`/Spotify_Clone/songs/${folder}/info.json`);
                 if (!res.ok) {
                     console.warn(`Could not fetch info.json for folder: ${folder}`);
                     continue;
@@ -109,7 +109,7 @@ async function displayAlbums(){
                 const metadata = await res.json();
                 document.querySelector(".cards").innerHTML += `
                     <div data-folder="${folder}" class="card">
-                        <img src="/songs/${folder}/cover.jpg" alt="COVER">
+                        <img src="/Spotify_Clone/songs/${folder}/cover.jpg" alt="COVER">
                         <h3>${metadata.title}</h3>
                         <p>${metadata.discription}</p>
                     </div>`;
@@ -123,7 +123,7 @@ async function displayAlbums(){
 
 
 async function main() {
-    await getsongs(`songs/Badshah`);
+    await getsongs(`/Spotify_Clone/songs/Badshah`);
     playSong(songs[0], true);
 
     //display all the albums
@@ -132,7 +132,7 @@ async function main() {
     //load the playlist whenever card is clicked
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
-            await getsongs(`songs/${item.currentTarget.dataset.folder}`);
+            await getsongs(`/Spotify_Clone/songs/${item.currentTarget.dataset.folder}`);
             //playSong(songs[0]); //if want auto play
         })
     })
@@ -141,11 +141,11 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
-            play.src = "/assets/images/pause.svg";
+            play.src = "/Spotify_Clone/assets/images/pause.svg";
         }
         else {
             currentSong.pause();
-            play.src = "/assets/images/play.svg";
+            play.src = "/Spotify_Clone/assets/images/play.svg";
         }
     })
 
@@ -156,10 +156,10 @@ async function main() {
 
             if (currentSong.paused) {
                 currentSong.play();
-                play.src = "/assets/images/pause.svg";
+                play.src = "/Spotify_Clone/assets/images/pause.svg";
             } else {
                 currentSong.pause();
-                play.src = "/assets/images/play.svg";
+                play.src = "/Spotify_Clone/assets/images/play.svg";
             }
         }
     })
@@ -211,11 +211,11 @@ async function main() {
         if (currentSong.volume == 0) {
             currentSong.volume = 0.1;
             volSlider.value = 10;
-            mute.src = "/assets/images/volume.svg";
+            mute.src = "/Spotify_Clone/assets/images/volume.svg";
         } else {
             currentSong.volume = 0;
             volSlider.value = 0;
-            mute.src = "/assets/images/mute.svg";
+            mute.src = "/Spotify_Clone/assets/images/mute.svg";
         }
     })
 
@@ -233,10 +233,10 @@ async function main() {
         const isAutoplayOn = toggle.src.includes("autoplay.svg") && !toggle.src.includes("autoplayoff");
 
         if (isAutoplayOn) {
-            toggle.src = "/assets/images/autoplayoff.svg";
+            toggle.src = "/Spotify_Clone/assets/images/autoplayoff.svg";
             flag = false;
         } else {
-            toggle.src = "/assets/images/autoplay.svg";
+            toggle.src = "/Spotify_Clone/assets/images/autoplay.svg";
             flag = true;
         }
     })
